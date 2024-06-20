@@ -1,0 +1,2 @@
+pycryptodome==3.11.0
+pyModbusTCP==0.2.1

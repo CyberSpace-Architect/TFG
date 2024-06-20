@@ -1,0 +1,64 @@
+services:
+  plc1_server:
+    container_name: honey_plc1_server
+    build:
+      context: servers
+      dockerfile: plc1/Dockerfile
+    networks:
+      - isolated_net
+    environment:
+      - TZ=${TZ}
+  plc2_server:
+    container_name: honey_plc2_server
+    build:
+        context: servers
+        dockerfile: plc2/Dockerfile 
+    networks:
+      - isolated_net
+    environment:
+      - TZ=${TZ}
+  plc3_server:
+    container_name: honey_plc3_server
+    build:
+      context: servers
+      dockerfile: plc3/Dockerfile
+    networks:
+      - isolated_net
+    environment:
+      - TZ=${TZ}
+  plc4_server:
+    container_name: honey_plc4_server
+    build:
+      context: servers
+      dockerfile: plc4/Dockerfile
+    networks:
+      - isolated_net
+    environment:
+      - TZ=${TZ}
+  plc5_server:
+    container_name: honey_plc5_server
+    build:
+      context: servers
+      dockerfile: plc5/Dockerfile
+    networks:
+      - isolated_net
+    environment:
+      - TZ=${TZ}
+  scada_client:
+    container_name: honey_scada_client
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    networks:
+      - isolated_net
+    depends_on:
+      - plc1_server
+      - plc2_server
+      - plc3_server
+      - plc4_server
+      - plc5_server
+
+networks:
+  isolated_net:
+    driver: bridge
+    internal: true

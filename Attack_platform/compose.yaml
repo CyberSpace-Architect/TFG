@@ -1,0 +1,25 @@
+
+services:
+  kali-attacker:
+    build: .
+    image: kali-custom
+    ports:
+      - 3389:3389
+    networks:
+      - desalination_plant_isolated_net
+      - honey_plant_isolated_net
+    #  - host_net
+    container_name: kali-attacker
+    stdin_open: true
+
+networks:
+  desalination_plant_isolated_net:
+    name: desalination_plant_isolated_net
+    driver: bridge
+    external: true
+  honey_plant_isolated_net:
+    name: honey_plant_isolated_net
+    driver: bridge
+    external: true
+  #host_net:
+  #  driver: bridge
